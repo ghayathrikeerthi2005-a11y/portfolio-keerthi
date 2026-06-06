@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keerthi Ghayathri — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy2: #1A2E42;
+    --blue: #1F6FEB;
+    --blue-light: #4A9EFF;
+    --teal: #00C4B4;
+    --cream: #F5F0E8;
+    --cream2: #EDE7D9;
+    --text: #1A1A2E;
+    --muted: #5A6474;
+    --white: #FFFFFF;
+    --card-bg: rgba(255,255,255,0.06);
+    --gold: #E8C96A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; letter-spacing: 0.02em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.65); text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 70% 50%, rgba(31,111,235,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 20% 80%, rgba(0,196,180,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal);
+    border: 1px solid rgba(0,196,180,0.4);
+    border-radius: 20px; padding: 0.4rem 1rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.12; font-weight: 700;
+    animation: fadeUp 0.7s 0.1s ease both;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+    display: block;
+  }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.6);
+    margin: 1.5rem 0 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+    max-width: 480px;
+  }
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    padding: 0.85rem 2rem; border-radius: 6px;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.8);
+    padding: 0.85rem 2rem; border-radius: 6px;
+    font-size: 0.9rem; font-weight: 400;
+    text-decoration: none; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* HERO RIGHT — Visual card stack */
+  .hero-visual {
+    display: flex; flex-direction: column; gap: 1rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .hero-stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 1.2rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .stat-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .stat-icon.blue { background: rgba(31,111,235,0.2); }
+  .stat-icon.teal { background: rgba(0,196,180,0.2); }
+  .stat-icon.gold { background: rgba(232,201,106,0.2); }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+  .stat-val { font-size: 1.05rem; font-weight: 500; color: #fff; margin-top: 2px; }
+
+  /* SECTION BASE */
+  section { padding: 6rem 4rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); font-weight: 500; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+  .section-title span { color: var(--gold); font-style: italic; }
+
+  /* ABOUT */
+  #about { background: rgba(255,255,255,0.02); }
+  .about-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-text p {
+    font-size: 1rem; line-height: 1.85; color: rgba(255,255,255,0.65);
+    margin-bottom: 1.2rem;
+  }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+  .tag {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.4rem 0.9rem; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.04);
+  }
+  .about-focus { display: flex; flex-direction: column; gap: 1.2rem; }
+  .focus-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 10px 10px 0;
+    padding: 1.2rem 1.4rem;
+  }
+  .focus-item.blue-border { border-left-color: var(--blue-light); }
+  .focus-item.gold-border { border-left-color: var(--gold); }
+  .focus-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .focus-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
+  }
+  .skill-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 1.6rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: rgba(0,196,180,0.4); transform: translateY(-4px); }
+  .skill-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .skill-card-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.8rem; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-pill {
+    font-size: 0.72rem; padding: 0.25rem 0.6rem; border-radius: 4px;
+    background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.6);
+  }
+
+  /* PROJECTS */
+  #projects { background: rgba(255,255,255,0.02); }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.8rem;
+  }
+  .project-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { border-color: rgba(31,111,235,0.5); transform: translateY(-5px); }
+  .project-card.featured { border-color: rgba(0,196,180,0.3); }
+  .project-header {
+    padding: 1.8rem 1.8rem 1.2rem;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .project-badge {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
+    padding: 0.3rem 0.7rem; border-radius: 4px;
+  }
+  .badge-analytics { background: rgba(31,111,235,0.2); color: var(--blue-light); }
+  .badge-design { background: rgba(0,196,180,0.15); color: var(--teal); }
+  .badge-ai { background: rgba(232,201,106,0.15); color: var(--gold); }
+  .badge-ml { background: rgba(160,100,220,0.2); color: #c084fc; }
+  .project-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: rgba(255,255,255,0.1); }
+  .project-body { padding: 0 1.8rem 1.8rem; flex: 1; }
+  .project-title { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.6rem; }
+  .project-desc { font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.55); margin-bottom: 1.2rem; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-tag {
+    font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.5);
+  }
+
+  /* CERTIFICATIONS */
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem;
+  }
+  .cert-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.3rem 1.5rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(232,201,106,0.4); }
+  .cert-card.new-cert {
+    border-color: rgba(0,196,180,0.4);
+    background: rgba(0,196,180,0.06);
+  }
+  .cert-dot {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .cert-dot.google { background: rgba(31,111,235,0.2); }
+  .cert-dot.cisco { background: rgba(0,196,180,0.2); }
+  .cert-dot.task { background: rgba(232,201,106,0.2); }
+  .cert-dot.other { background: rgba(255,255,255,0.07); }
+  .cert-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .cert-issuer { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+  .cert-new-badge {
+    font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--teal); color: var(--navy); border-radius: 4px;
+    padding: 0.15rem 0.45rem; font-weight: 600; margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* CONTACT */
+  #contact { background: rgba(255,255,255,0.02); }
+  .contact-wrap {
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 1.8rem 1.2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .contact-card:hover { border-color: rgba(0,196,180,0.4); transform: translateY(-3px); }
+  .contact-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .contact-type { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem; }
+  .contact-val { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.8); word-break: break-all; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.8rem; color: rgba(255,255,255,0.3);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">KG</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-tag">Available for Internships &amp; Collaborations</div>
+      <h1>
+        Keerthi<br>Ghayathri
+        <em>Designer &amp; Analyst</em>
+      </h1>
+      <p class="hero-desc">
+        UI/UX designer and data analytics enthusiast crafting intuitive digital experiences
+        and transforming data into meaningful visual stories — powered by AI &amp; Data Science.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stat-card">
+        <div class="stat-icon blue">🎨</div>
+        <div>
+          <div class="stat-label">Primary Focus</div>
+          <div class="stat-val">UI/UX &amp; Graphic Design</div>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-icon teal">📊</div>
+        <div>
+          <div class="stat-label">Secondary Focus</div>
+          <div class="stat-val">Data Analytics &amp; Visualization</div>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-icon gold">🎓</div>
+        <div>
+          <div class="stat-label">Education</div>
+          <div class="stat-val">B.Tech AI &amp; Data Science — St. Martin's</div>
+        </div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="stat-icon blue">📍</div>
+        <div>
+          <div class="stat-label">Location</div>
+          <div class="stat-val">Hyderabad, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-eyebrow">About Me</div>
+        <h2 class="section-title">Where Design Meets <span>Data Intelligence</span></h2>
+        <p>
+          I'm a B.Tech student specializing in Artificial Intelligence &amp; Data Science at St. Martin's Engineering College, Hyderabad — with a deep passion for UI/UX design and data analytics.
+        </p>
+        <p>
+          I believe the best digital products are born at the intersection of empathy-driven design and data-informed decision-making. I use Figma to craft intuitive user experiences and Python/SQL to build data pipelines that uncover actionable insights.
+        </p>
+        <p>
+          From storyboard AI systems to financial analytics dashboards, I bring a holistic perspective that bridges creative thinking with technical rigor.
+        </p>
+        <div class="about-tags">
+          <span class="tag">Figma</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">Data Visualization</span>
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Hyderabad, India</span>
+        </div>
+      </div>
+      <div class="about-focus">
+        <div class="focus-item">
+          <div class="focus-title">🎨 UI/UX &amp; Visual Design</div>
+          <div class="focus-sub">Wireframing, prototyping, user research &amp; building design systems in Figma. Certified Google UX Design Professional.</div>
+        </div>
+        <div class="focus-item blue-border">
+          <div class="focus-title">📊 Data Analytics</div>
+          <div class="focus-sub">Statistical analysis, data visualization, predictive modeling using Python, Pandas &amp; SQL. Deloitte Forage experience.</div>
+        </div>
+        <div class="focus-item gold-border">
+          <div class="focus-title">🤖 AI &amp; Machine Learning</div>
+          <div class="focus-sub">Deep learning, CNNs, NLP, Transformers — building end-to-end AI pipelines using TensorFlow &amp; PyTorch.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-eyebrow">What I Bring</div>
+    <h2 class="section-title">Skills &amp; <span>Expertise</span></h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🎨</div>
+        <div class="skill-card-title">UI/UX Design</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Figma</span>
+          <span class="skill-pill">Wireframing</span>
+          <span class="skill-pill">Prototyping</span>
+          <span class="skill-pill">User Research</span>
+          <span class="skill-pill">Design Systems</span>
+          <span class="skill-pill">User Journey Mapping</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">Data Analytics</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Pandas</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Data Visualization</span>
+          <span class="skill-pill">Statistical Analysis</span>
+          <span class="skill-pill">Predictive Modeling</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-title">AI &amp; Deep Learning</div>
+        <div class="skill-pills">
+          <span class="skill-pill">TensorFlow</span>
+          <span class="skill-pill">PyTorch</span>
+          <span class="skill-pill">CNN</span>
+          <span class="skill-pill">NLP</span>
+          <span class="skill-pill">Transformers</span>
+          <span class="skill-pill">Computer Vision</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">💻</div>
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Java</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">Embedded C</span>
+          <span class="skill-pill">Django</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🛠️</div>
+        <div class="skill-card-title">Tools &amp; Platforms</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Git &amp; GitHub</span>
+          <span class="skill-pill">VS Code</span>
+          <span class="skill-pill">OpenCV</span>
+          <span class="skill-pill">Figma</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔌</div>
+        <div class="skill-card-title">Hardware &amp; IoT</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Microcontrollers</span>
+          <span class="skill-pill">PCB Design</span>
+          <span class="skill-pill">IoT Protocols</span>
+          <span class="skill-pill">Embedded Systems</span>
+          <span class="skill-pill">Sensors</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-eyebrow">Featured Work</div>
+    <h2 class="section-title">Projects &amp; <span>Builds</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <div class="project-header">
+          <span class="project-badge badge-analytics">Data Analytics</span>
+          <span class="project-num">01</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Smart Spend Optimizer</div>
+          <div class="project-desc">An intelligent expense management application that aggregates transaction logs, decodes spending patterns, and generates algorithmic budget recommendations with interactive data visualizations.</div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">SQL</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Predictive Modeling</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-badge badge-ai">Generative AI</span>
+          <span class="project-num">02</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Script to Screen Using AI</div>
+          <div class="project-desc">Automated AI pipeline that converts movie scripts into visual storyboards using NLP and generative models — bridging creative storytelling with AI-driven visual design automation.</div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">LLMs</span>
+            <span class="tech-tag">Computer Vision</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-badge badge-design">NLP + Audio</span>
+          <span class="project-num">03</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Transformer-Based TTS with Emotion Control</div>
+          <div class="project-desc">End-to-end text-to-speech synthesis system generating natural, human-like speech with dynamic emotion modulation (happy, sad, neutral) using deep learning embeddings.</div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">PyTorch</span>
+            <span class="tech-tag">Transformers</span>
+            <span class="tech-tag">NLP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-badge badge-ml">Computer Vision</span>
+          <span class="project-num">04</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Wild Animal Intrusion Detection</div>
+          <div class="project-desc">CNN pipeline that classifies wild animal intrusions in forest and border perimeters using advanced image processing, with an early-warning automated alert dispatch system.</div>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">CNN</span>
+            <span class="tech-tag">TensorFlow</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-badge badge-ai">Embedded Systems</span>
+          <span class="project-num">05</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Bank Locker Security System</div>
+          <div class="project-desc">Hardware-based security framework with multi-factor authentication, real-time breach detection, and automated GSM/buzzer emergency alert dispatch.</div>
+          <div class="project-tech">
+            <span class="tech-tag">Embedded C</span>
+            <span class="tech-tag">Microcontroller</span>
+            <span class="tech-tag">MFA</span>
+            <span class="tech-tag">IoT Sensors</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-eyebrow">Credentials</div>
+    <h2 class="section-title">Certifications &amp; <span>Training</span></h2>
+    <div class="certs-grid">
+
+      <div class="cert-card new-cert">
+        <div class="cert-dot task">📜</div>
+        <div>
+          <div class="cert-name">Programming Essentials in Python &amp; Django <span class="cert-new-badge">New</span></div>
+          <div class="cert-issuer">TASK — Telangana Academy for Skill &amp; Knowledge · Feb 2026</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-dot google">🎯</div>
+        <div>
+          <div class="cert-name">Google UX Design Professional Certificate</div>
+          <div class="cert-issuer">Coursera / Google</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-dot cisco">📊</div>
+        <div>
+          <div class="cert-name">Data Analytics Essentials</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-dot cisco">🔬</div>
+        <div>
+          <div class="cert-name">Introduction to Data Science</div>
+          <div class="cert-issuer">Cisco</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-dot other">☕</div>
+        <div>
+          <div class="cert-name">Java &amp; Industry Applications</div>
+          <div class="cert-issuer">NilTech-Edu</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-dot other">🔌</div>
+        <div>
+          <div class="cert-name">Embedded Systems &amp; IoT Specialization</div>
+          <div class="cert-issuer">Technology Learning Centre</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div class="section-eyebrow">Let's Connect</div>
+      <h2 class="section-title">Open to <span>Opportunities</span></h2>
+      <p style="color:rgba(255,255,255,0.55); font-size:1rem; line-height:1.8;">
+        I'm actively looking for internships in UI/UX Design, Graphic Design, and Data Analytics.
+        Let's build something meaningful together.
+      </p>
+      <div class="contact-grid">
+        <a href="mailto:keerthighayathri@gmail.com" class="contact-card">
+          <div class="contact-icon">📧</div>
+          <div class="contact-type">Email</div>
+          <div class="contact-val">keerthighayathri@gmail.com</div>
+        </a>
+        <div class="contact-card">
+          <div class="contact-icon">📱</div>
+          <div class="contact-type">Phone</div>
+          <div class="contact-val">+91 72870 58470</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📍</div>
+          <div class="contact-type">Location</div>
+          <div class="contact-val">Hyderabad, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Keerthi Ghayathri · Designed with passion from Hyderabad 🇮🇳</p>
+</footer>
+
+</body>
+</html>
